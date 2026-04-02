@@ -19,9 +19,9 @@
 
     /* Card styling */
     .card {
-      width: 90%; /* Responsive width for mobile */
-      max-width: 400px; /* Max width */
-      height: 200px; /* Increased height for address */
+      width: 90%;
+      max-width: 400px;
+      height: 200px;
       background: #0073e6;
       color: #ffffff;
       border-radius: 8px;
@@ -92,7 +92,7 @@
     }
 
     .yellow-button {
-      background-color: #FFD700; /* Gold color */
+      background-color: #FFD700;
       color: black;
       border: none;
       border-radius: 5px;
@@ -103,10 +103,9 @@
     }
 
     .yellow-button:hover {
-      background-color: #FFC300; /* Lighter gold on hover */
+      background-color: #FFC300;
     }
 
-    /* Highlight styling */
     .highlighted-description {
       background-color: black;
       color: white;
@@ -114,8 +113,10 @@
       border-radius: 4px;
     }
   </style>
+
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 </head>
+
 <body>
 
   <!-- Upload Section -->
@@ -146,86 +147,99 @@
 
   <!-- Card Section -->
   <div class="card" id="visitingCard">
-    <!-- Phone number positioned in upper right corner -->
-    <span id="phone" style="font-size: 12px; position: absolute; top: 10px; right: 10px;">📱 +91 9324602136 <br>☎️ +91 23099105/65883466 </span>
+
+    <span id="phone" style="font-size: 12px; position: absolute; top: 10px; right: 10px;">
+      📱 +91 9324602136 <br>
+      ☎️ +91 23099105/65883466
+    </span>
 
     <h2 id="name">Pradeep.C.Jain</h2>
     <h2 id="name">Ranjeet.C.Jain</h2> 
-    <h2 id="role">RISHABH TEXTILE<br>Wholesale Cloth Merchants:</h2>
-    
-    <!-- Description Section -->
-    <p id="description">Solapur chadar, Lungi, Bedsheet,<br>Woolen blanket, Shawl Business.</p>
 
-    <!-- Profile Image Above Phone Number -->
-    <img src="https://via.placeholder.com/100" alt="Profile Picture" class="profile-img" id="profileImage">
+    <h2 id="role">
+      RISHABH TEXTILE<br>
+      Wholesale Cloth Merchants:
+    </h2>
 
-    <!-- Address Section -->
-    <p class="address">🏠 681,N.M Joshi Marg,Mahaveer Estate,<br>Byculla (W),Mumbai-400027.</p>
+    <p id="description">
+      Solapur chadar, Lungi, Bedsheet,<br>
+      Woolen blanket, Shawl Business.
+    </p>
+
+    <!-- YAHAN CHANGE KIYA -->
+    <img src="Visiting_Card.png" alt="Profile Picture" class="profile-img" id="profileImage">
+
+    <p class="address">
+      🏠 681,N.M Joshi Marg,Mahaveer Estate,<br>
+      Byculla (W),Mumbai-400027.
+    </p>
+
   </div>
 
-  <!-- Save Visiting Card Button -->
   <button class="button" onclick="saveVisitingCard()">Save Visiting Card</button>
 
-  <script>
-    let imageUrl = '';
+<script>
 
-    function previewImage(event) {
-      const imgElement = document.getElementById('profileImage');
-      imageUrl = URL.createObjectURL(event.target.files[0]);
-      imgElement.src = imageUrl;
-      document.getElementById('saveButton').style.display = 'block';
-    }
+let imageUrl = '';
 
-    function saveImage() {
-      const link = document.createElement('a');
-      link.href = imageUrl;
-      link.download = 'profile_picture.png';
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-    }
+function previewImage(event) {
+  const imgElement = document.getElementById('profileImage');
+  imageUrl = URL.createObjectURL(event.target.files[0]);
+  imgElement.src = imageUrl;
+  document.getElementById('saveButton').style.display = 'block';
+}
 
-    function saveVisitingCard() {
-      const cardElement = document.getElementById('visitingCard');
-      
-      html2canvas(cardElement).then(canvas => {
-        const link = document.createElement('a');
-        link.href = canvas.toDataURL('image/png');
-        link.download = 'Visiting_Card.png';
-        link.click();
-      });
-    }
+function saveImage() {
+  const link = document.createElement('a');
+  link.href = imageUrl;
+  link.download = 'profile_picture.png';
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+}
 
-    function setTextColorToYellow() {
-      const card = document.getElementById('visitingCard');
-      card.style.color = 'yellow'; // Set the text color of the whole card to yellow
+function saveVisitingCard() {
+  const cardElement = document.getElementById('visitingCard');
 
-      // Also set the description color to yellow
-      const descriptionElement = document.getElementById('description');
-      descriptionElement.style.color = 'yellow'; // Change the description color to yellow
-    }
+  html2canvas(cardElement).then(canvas => {
+    const link = document.createElement('a');
+    link.href = canvas.toDataURL('image/png');
+    link.download = 'visiting_card.png';
+    link.click();
+  });
+}
 
-    function highlightRole() {
-      const roleElement = document.getElementById('role');
-      roleElement.style.backgroundColor = 'green'; // Highlight the role background with green color
-      roleElement.style.color = 'white'; // Set the text color to white for contrast
-      roleElement.style.padding = '2px 4px'; // Add padding to make the background more visible
-      roleElement.style.borderRadius = '4px'; // Round the background edges
-    }
+function setTextColorToYellow() {
+  const card = document.getElementById('visitingCard');
+  card.style.color = 'yellow';
 
-    function highlightDescription() {
-      const descriptionElement = document.getElementById('description');
-      descriptionElement.style.backgroundColor = 'black'; // Set black background
-      descriptionElement.style.color = 'white'; // Set text color to white
-      descriptionElement.style.padding = '2px 4px'; // Add padding
-      descriptionElement.style.borderRadius = '4px'; // Round the background edges
-    }
+  const descriptionElement = document.getElementById('description');
+  descriptionElement.style.color = 'yellow';
+}
 
-    function changeBackgroundColor(event) {
-      const color = event.target.value;
-      const card = document.getElementById('visitingCard');
-      card.style.backgroundColor = color; // Change the background color of the card
-    }
-  </script>
+function highlightRole() {
+  const roleElement = document.getElementById('role');
+  roleElement.style.backgroundColor = 'green';
+  roleElement.style.color = 'white';
+  roleElement.style.padding = '2px 4px';
+  roleElement.style.borderRadius = '4px';
+}
+
+function highlightDescription() {
+  const descriptionElement = document.getElementById('description');
+  descriptionElement.style.backgroundColor = 'black';
+  descriptionElement.style.color = 'white';
+  descriptionElement.style.padding = '2px 4px';
+  descriptionElement.style.borderRadius = '4px';
+}
+
+function changeBackgroundColor(event) {
+  const color = event.target.value;
+  const card = document.getElementById('visitingCard');
+  card.style.backgroundColor = color;
+}
+
+</script>
+
 </body>
-</html>ī
+</html>
